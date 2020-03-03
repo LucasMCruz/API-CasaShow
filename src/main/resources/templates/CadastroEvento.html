@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf-extras-springsecurity5"
+	layout:decorate="Padrao">
+
+<head>
+	
+	<title>Casa de show</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../fontawesome-free-5.12.0-web/css/all.css" type="text/css">
+	
+
+	<!-- =======================================================
+    Theme Name: Maxim
+    Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+	======================================================= -->
+</head>
+<section layout:fragment="conteudo" >
+
+	<form class="m-8" method="POST" action="/eventos"
+		th:object="${evento}" >
+		<div class="alert alert-success mr-3 ml-3" role="alert"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Casa de show cadastrada</span>
+			</div>
+			<div class="alert alert-danger mr-3 ml-3 mt-3" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+				<span th:text="${detailedError.message}"></span></div></div>
+		<div class="card fluid  p-0 m-3 col-sm-8">
+			
+		  <div class="card-header">
+		    Criar Evento
+		  </div>
+		  
+			<div class="card-body m-4">
+			<input type="hidden" th:field="*{codigo}"/>
+				<div class="form-group row">
+				
+					<label for="inputDescricao"
+						class="text-left  col-sm-2 col-form-label tamanholabel">Evento:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control was-validated" id="Evento" th:field="*{nomeEvento}" 
+							placeholder="ex: Nome." required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputValor"
+						class="text-left  col-sm-2 col-form-label tamanholabel">Capacidade:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control was-validated" id="Capacidade" th:field="*{capacidade}" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputValor"
+						class="col-sm-2 col-form-label tamanholabel">Data do show:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control was-validated" id="dataEvento" th:field="*{dataEvento}"
+							placeholder="dd/mm/yyyy" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputValor"
+						class="col-sm-2 col-form-label tamanholabel">Valor do Ingresso:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control was-validated" id="valor" th:field="*{valor}" required
+							>
+					</div>
+				</div>
+				<div class="form- row" >
+					<label for="inputState" class="text-center col-sm-2 col-form-label">Casa de Show:
+					</label> <select id="inputState" class="form-control col-sm-2" th:field="*{casaShow}">
+						
+						<option th:each="casaShow : ${cshow}" th:value="${casaShow.codigo}" th:text="${casaShow.nome}"></option>
+						
+					</select>
+				</div>
+				<div class="form- row" >
+					<label for="inputState" class="text-center col-sm-2 col-form-label">Tipo:
+					</label> <select id="inputState" class="form-control col-sm-2" th:field="*{status}">
+						
+						<option th:each="status : ${todosStatusEvento}" th:value="${status}" th:text="${status.definicao}" th:field="*{status}"></option>
+						
+					</select>
+				</div>
+				<input class="btn btn-primary col-off-set-3" type="submit" value="Submit">	
+			</div>
+		</div>
+	</form>
+	<div class="container-fluid card">
+		<div class="card-body form-group row">
+			<table class="table table-bordered table-striped container-fluid">
+				<thead>
+					<tr>
+						<th class="text-center">Id</th>
+						<th class="text-center">Nome</th>
+						<th class="text-center">Capacidade</th>
+						<th class="text-center">Preço do Ingresso</th>
+						<th class="text-center">Casa de Show</th>
+						<th class="text-center">Editar</th>
+						<th class="text-center">Excluir</th>
+					<tr>
+				</thead>
+				<tbody>
+					<tr th:each="events:${events}">
+							<td class="text-center" th:text="${events.codigo}"></td>
+							<td class="text-center" th:text="${events.nomeEvento}"></td>
+							<td class="text-center" th:text="${events.capacidade}"></td>
+							<td class="text-center" th:text="${events.valor}"></td>
+							<td class="text-center" th:text="${events.casaShow.nome}" ></td>
+							<td class="text-center">
+							<a class="btn btn-link btn-sm"
+							th:href="@{/eventos/{codigo}(codigo=${events.codigo})} "
+							title="Editar"> <i class="fas fa-pencil-alt"></i>
+						</a>
+							</td>
+							<td class="text-center"><a class="btn btn-link btn-sm"
+								data-toggle="modal" data-target="#exampleModal2" th:attr="data-codigo=${events.codigo}" title="deletar">
+									<i class="fas fa-times"></i>
+							</a>
+							</td>
+					</tr>
+
+
+
+				</tbody>
+
+
+			</table>
+		</div>
+		<div layout:insert="btnExcluir2"></div>
+		
+		</div>	
+
+		
+		
+		
+		
+</section>
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+</html>

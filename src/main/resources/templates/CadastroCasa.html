@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf-extras-springsecurity5"
+	layout:decorate="Padrao">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link href="../fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
+
+</head>
+
+
+<section layout:fragment="conteudo">
+	<form class="m-8" method="POST" action="/casas"
+		th:object="${casaShow}">
+		<div class="alert alert-success mr-3 ml-3" role="alert"
+			th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}">Casa de show cadastrada</span>
+		</div>
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+				<span th:text="${detailedError.message}"></span></div></div>
+		<div class="logo text-center">
+			<h2>Casa de Show</h2>
+		</div>
+
+		
+
+
+		<div class="form-group row m-5">
+			<input type="hidden" th:field="*{codigo}"/>
+
+			<label for="inputDescricao"
+				class="text-leftcol-form-label col-sm-1 tamanholabel ">Casa
+				de Show:</label>
+			<div class="col-sm-2 was-valid">
+				<input type="text" class="form-control" id="nome" th:field="*{nome}"
+					placeholder="Nome">
+			</div>
+		</div>
+
+		<div class="form-group row m-5">
+			<label for="inputValor" class="col-sm-1 col-form-label tamanholabel">Endereço:</label>
+			<div class="col-sm-2 was-valid">
+				<input type="text" class="form-control" id="edereco" th:field="*{endereco}"
+					placeholder="Av. Rua. Alameda..." required>
+			</div>
+		</div>
+		<div class="form-group row ml-5">
+			<input class="btn btn-primary" type="submit" value="Submit">
+		</div>
+	</form>
+
+	<div class="container-fluid card">
+		<div class="card-body form-group row">
+			<table class="table table-bordered table-striped container-fluid">
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th>Casa de Show</th>
+						<th class="text-center">Endereço</th>
+
+						<th class="text-center">Editar</th>
+						<th class="text-center">Excluir</th>
+					<tr>
+				</thead>
+				<tbody>
+					<tr th:each="cshow:${cshow}">
+						<td class="text-center" th:text="${cshow.codigo}"></td>
+						<td th:text="${cshow.nome}"></td>
+						<td class="text-center" th:text="${cshow.endereco}"></td>
+						<td class="text-center"><a class="btn btn-link btn-sm"
+							th:href="@{/casas/{codigo}(codigo=${cshow.codigo})} "
+							title="Editar"> <i class="fas fa-pencil-alt"></i>
+						</a>
+						</td>
+						<td class="text-center">
+						<a class="btn btn-link btn-sm"
+							data-toggle="modal" data-target="#exampleModal" th:attr="data-codigo=${cshow.codigo}" title="deletar">
+								<i class="fas fa-times"></i>
+						</a>
+						</td>
+					</tr>
+
+
+
+				</tbody>
+
+
+			</table>
+		</div>
+		<div layout:insert="btnExcluir"></div>
+	</div>
+</section>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

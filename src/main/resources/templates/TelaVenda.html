@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf-extras-springsecurity5"
+	layout:decorate="Padrao">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../fontawesome-free-5.12.0-web/css/all.css"
+	type="text/css">
+
+</head>
+<section layout:fragment="conteudo" >
+<form method="POST" >
+	<div class="card mb-3 ml-3 mr-3" th:object="${evento}" >
+		<div class="alert alert-success mr-3 ml-3" role="alert"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Compra realizada com sucesso</span>
+			</div>
+					<div class="alert alert-danger mr-3 ml-3" role="alert"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Compra realizada com sucesso</span>
+			</div>
+			<div  th:each="events:${events}">
+  <img class="card-img-top" th:src="@{/images/{codigo}.png(codigo=${events.status})}" alt="Card image cap" width="240px" height="300px" ></div>
+  <div class="card-header text-center" th:each="events:${events}">
+  	<strong class= "text-center" th:text="${events.nomeEvento}"></strong>
+  	
+  	</div>
+  
+   <div class="card-body form-row" th:each="events:${events}">
+      <div class="form-group col-sm-3" >
+     
+    </div>
+    <div class="form-group col-sm-1">
+      <p class="">Data</p><p th:text="${{events.dataEvento}}"></p>
+    <hr>
+    </div>
+    <div class="form-group col-sm-4" ></div>
+    <div class="form-group col-sm-2">
+      <p>Tipo</p><p th:text="${{events.status.definicao}}"></p>
+  <hr>
+    </div>
+    
+ 
+ <hr>
+ <div class="col-sm-12 was-validated">
+ 	<div class="col-sm-6" >
+    <p class="card-text col-sm-4" th:text="|Ingressos a Venda: ${events.qtdingresso} |"><small class="text-muted"></small></p>
+    
+    
+    <label>Quantos ingressos</label>
+    <input name="desc" required>
+    </div>
+    </div>
+    	<div class="col-sm-4" ></div>
+    	<div class="col-sm-4" ></div>
+      <button type="submit" class="btn btn-primary col-sm-1 btn-sm " th:href="@{/{codigo}(codigo=${events.codigo})}">comprar</button>
+      <div class="col-sm-1" ></div>
+      <a type="button" class="btn btn-danger col-sm-1 btn-sm" href="/">cancelar</a>
+    
+  
+  </div>
+  </div>
+  </form>
+</section>
+</html>

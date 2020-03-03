@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layout">
+
+	
+<section layout:fragment="conteudo">
+
+	
+		<div class="card container-fluid col-sm-3 mt-5 p-0">
+				<div class="card-header text-center">
+					Cadastrar
+				</div>
+				<div class="alert alert-success mr-3 mt-1 ml-3" role="alert"
+					th:if="${!#strings.isEmpty(mensagem)}">
+					<span th:text="${mensagem}">Casa de show cadastrada</span>
+				</div>
+			<form action="/registrar" method="POST" >
+				<div class="card-body">
+				<input type="hidden" name="id"/>
+					<div class="from-group row was-valid" >
+						<h5 class="card-title col-sm-3">Usuario:</h5>
+						<input type="text" class="form-control col-sm-4 mb-2" name="username" required>
+					</div>
+	
+					<div class="form group row was-valid">
+						<h5 class="card-title col-sm-3">Senha:</h5>
+						<input type="password" class="form-control col-sm-4 mb-2"  name="password" placeholder="password" required>
+					</div>
+				
+					<div class="form-check">
+					
+  					<input class="form-check-input position-static" name="adm" type="checkbox" id="adm" aria-label="adm">
+  					<label class="form-check-label" for="adm">
+  					Admin
+  					</label>
+					</div>
+	
+					<div class="container-login100-form-btn">
+					<button class="btn btn-link btn-dark text-center" type="submit">
+							<i class="fas fa-sign-in-alt fa-1x"></i>
+							Cadastrar
+					</button>
+						
+					</div>
+	
+	
+					<div class="text-center mt-2">
+						<a href="/entrar" >
+							<i class="fas fa-user-plus fa-1x"></i> <span>Login</span>
+						</a>
+					</div>
+				
+				</div>
+			
+
+			</form>
+		</div>
+	
+	
+	
+
+	<div id="dropDownSelect1"></div>
+	
+</section>
+</html>

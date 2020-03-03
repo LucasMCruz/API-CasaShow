@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf-extras-springsecurity5"
+	layout:decorate="Padrao">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../fontawesome-free-5.12.0-web/css/all.css"
+	type="text/css">
+
+</head>
+
+<section layout:fragment="conteudo" style="background-image: url('../images/fundo.jpg'); padding-bottom: 515px;">
+
+	<div class="container-fluid" th:object="${evento}">
+		<div class="alert alert-success mr-3 ml-3" role="alert"
+				th:if="${#strings.isEmpty(mensagem)}">
+				<span>Compra realizada com sucesso</span>
+			</div>
+					<div class="alert alert-danger mr-3 ml-3" role="alert"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Compra realizada com sucesso</span>
+			</div>
+		<div class="logo text-center card-header text-white">
+			<h2>Bem-vindo <span sec:authentication="principal.username"></span></h2>
+		</div>
+			<div class="card m-5 pt-2 pb-2 pl-2 pr-2 "   th:each="events: ${events}">
+			
+			<div class="span12">
+			
+					<i class="fas fa-ticket-alt fa-7x col-sm-5" style="float:left"	></i>
+					<i class="fas fa-ticket-alt fa-7x col-sm-2" style="float:right"	></i>
+					
+				<h5 th:text="${events.nomeEvento}"></h5>
+				<h6 th:text="|Preço do ingresso: R$ ${{events.valor}}|"></h6>
+				<h6 th:text="|Local Do Evento: ${events.casaShow.nome}|"></h6>
+				<h6 th:text="|Capacidade Maxima: ${events.capacidade} |"></h6>
+				<h6 th:text="|Ingressos a Venda: ${events.qtdingresso} |"></h6>
+
+								<a class="btn btn-link btn-dark col-sm-12" th:href="@{/comprar/{codigo}(codigo=${events.codigo})}"  type="button">Comprar</a>
+								
+				
+			</div>
+			</div>
+			</div>
+			
+	
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/btn.js"></script>
+</section>
+</html>
