@@ -34,7 +34,7 @@ public class CasaShow {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "casaShow")
 	private List<Evento> evento;
 	
-	
+
 	
 	public List<Evento> getEvento() {
 		return evento;
@@ -100,6 +100,8 @@ public class CasaShow {
 			return false;
 		return true;
 	}
+
+
 
 
 	

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gft.show.exceptions.CasaNao;
 import com.gft.show.model.CasaShow;
 import com.gft.show.repository.CasaShowRepository;
 
@@ -27,13 +28,18 @@ public class CasaShowService {
 		return casaRe.findAll(Sort.by(Sort.Direction.ASC, "nome"));
 	}
 	
+	public List<CasaShow>listarDesc(){
+		System.out.println("Listei em ordem Asc");
+		return casaRe.findAll(Sort.by(Sort.Direction.DESC, "nome"));
+	}
+	
 	public CasaShow salvar(CasaShow casas, RedirectAttributes attributes) {
 		System.out.println("he"+casas.getCodigo());
 		if(casas.getCodigo() !=null) {
 			Optional<CasaShow> a = casaRe.findById(casas.getCodigo());
 		
 			if(a.isPresent()) {
-				attributes.addFlashAttribute("mensagem", "CAsa ja existe");
+				throw new CasaNao("Casa ja eXiste existe");
 			}
 		}
 		
@@ -44,8 +50,18 @@ public class CasaShowService {
 		CasaShow casa = casaRe.findById(codigo).get();
 		
 		if(casa == null) {
-			attributes.addFlashAttribute("mensagem", "CAsa nao existe");
-		}
+			throw new CasaNao("Casa Na0 existe");
+			}
+		return casa;
+	}
+	
+	public CasaShow buscarPorNome(String nome) {
+		CasaShow casa = casaRe.findByNome(nome);
+		
+		if(casa == null) {
+			throw new CasaNao("Casa Na0 existe");
+			}
+		
 		return casa;
 	}
 	
