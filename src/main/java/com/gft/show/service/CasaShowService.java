@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +20,11 @@ public class CasaShowService {
 	public List<CasaShow>listar(){
 		System.out.println("method listar");
 		return casaRe.findAll();
+	}
+	
+	public List<CasaShow>listarAsc(){
+		System.out.println("Listei em ordem Asc");
+		return casaRe.findAll(Sort.by(Sort.Direction.ASC, "nome"));
 	}
 	
 	public CasaShow salvar(CasaShow casas, RedirectAttributes attributes) {
@@ -41,6 +47,15 @@ public class CasaShowService {
 			attributes.addFlashAttribute("mensagem", "CAsa nao existe");
 		}
 		return casa;
+	}
+	
+	public void atualizar(CasaShow casas) {
+		buscar(casas.getCodigo(), null);
+		casaRe.save(casas);
+		
+	}
+	public void deletar(Long codigo) {
+		casaRe.deleteById(codigo);
 	}
 	
 

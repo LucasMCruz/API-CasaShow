@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -28,6 +29,7 @@ public class CasaShow {
 	@Size(max = 60, message = "A descrição nao pode conter mais de 60 caracteres")
 	private String nome;
 	
+	@JsonIgnore
 	@JsonInclude(Include.NON_NULL)
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "casaShow")
 	private List<Evento> evento;

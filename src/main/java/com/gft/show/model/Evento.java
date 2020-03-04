@@ -63,7 +63,7 @@ public class Evento {
 	@Enumerated(EnumType.STRING)
 	private StatusEvento status;
 	
-	@JsonIgnore
+	
 	@JsonInclude(Include.NON_NULL)
 	@ManyToOne
 	@NotNull(message = "Selecione ou crie uma Casa de Show")
