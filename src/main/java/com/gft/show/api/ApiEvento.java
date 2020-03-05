@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.gft.show.model.CasaShow;
 import com.gft.show.model.Evento;
 import com.gft.show.service.EventoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 @Api(tags="Evento")
@@ -34,81 +34,81 @@ public class ApiEvento {
 	@Autowired
 	private EventoService eventoSe;
 	
-	@ApiOperation("Listar Eventos")
+	@ApiOperation("Listar todos os Eventos")
 	@GetMapping()
-	public ResponseEntity<List<Evento>>listar(){
+	public ResponseEntity<List<Evento>>listar(@ApiParam(name="Lista pelo id")@RequestBody  Evento evento){
 		System.out.println("Listando eventos");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(eventoSe.listar());
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/valor/asc")
-	public ResponseEntity<List<Evento>> listaValorASC(){
+	public ResponseEntity<List<Evento>> listaValorASC(@ApiParam(name="Lista pelo valor")@RequestBody  Evento evento){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarValAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/valor/desc")
-	public ResponseEntity<List<Evento>> listaValorDESC(){
+	public ResponseEntity<List<Evento>> listaValorDESC(@ApiParam(name="Lista pelo valor")@RequestBody  Evento evento){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarValDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/data/asc")
-	public ResponseEntity<List<Evento>> listaDataASC(){
+	public ResponseEntity<List<Evento>> listaDataASC(@ApiParam(name="Lista pela Data")@RequestBody  Evento evento){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDataAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/data/desc")
-	public ResponseEntity<List<Evento>> listaDataDESC(){
+	public ResponseEntity<List<Evento>> listaDataDESC(@ApiParam(name="Lista pela Data")@RequestBody  Evento evento){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDataDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/capacidade/asc")
-	public ResponseEntity<List<Evento>> listaCapASC(){
+	public ResponseEntity<List<Evento>> listaCapASC(@ApiParam(name="Lista pela Capaci9dade")@RequestBody  Evento evento){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarCapAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/capacidade/desc")
-	public ResponseEntity<List<Evento>> listaCapDESC(){
+	public ResponseEntity<List<Evento>> listaCapDESC(@ApiParam(name="Lista pela CApacidade")@RequestBody  Evento evento){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarCapDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/nome/asc")
-	public ResponseEntity<List<Evento>> listaASC(){
+	public ResponseEntity<List<Evento>> listaASC(@ApiParam(name="Lista pelo nome")@RequestBody  Evento evento){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	
-	
+	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/nome/desc")
-	public ResponseEntity<List<Evento>> listaDESC(){
+	public ResponseEntity<List<Evento>> listaDESC(@ApiParam(name="Lista pelo nome")@RequestBody  Evento evento){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -116,9 +116,9 @@ public class ApiEvento {
 	}
 	
 	
-	@ApiOperation("Salva os livros")
+	@ApiOperation("Salva um novo Evento")
 	@PostMapping()
-	public ResponseEntity<Void> salvar(@RequestBody Evento evento){
+	public ResponseEntity<Void> salvar(@ApiParam(name="Salvar um novo Evento")@RequestBody  Evento evento){
 		System.out.println("Salvei um evento");
 		eventoSe.salvar(evento);
 		
@@ -147,6 +147,8 @@ public class ApiEvento {
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
+	
+	@ApiOperation("Salva os livros")
 	@DeleteMapping("/{codigo}")
 	public ResponseEntity<Void> deletar(@PathVariable("codigo")Long codigo){
 		eventoSe.deletar(codigo);
