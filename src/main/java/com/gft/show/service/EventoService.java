@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gft.show.model.CasaShow;
 import com.gft.show.model.Evento;
 import com.gft.show.repository.EventoRepository;
 
@@ -14,20 +16,59 @@ import com.gft.show.repository.EventoRepository;
 public class EventoService {
 	
 	@Autowired
-	private EventoRepository casaRe;
+	private EventoRepository eventoRe;
 	
 	public List<Evento> listar(){
-		return casaRe.findAll();
+		return eventoRe.findAll();
+	}
+	
+	public List<Evento> listarAsc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.ASC, "nomeEvento"));
+	}
+	
+	public List<Evento> listarDesc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.DESC, "nomeEvento"));
+	}
+	
+	public List<Evento> listarCapAsc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.ASC, "capacidade"));
+	}
+	
+	public List<Evento> listarCapDesc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.DESC, "capacidade"));
+	}
+	
+	public List<Evento> listarDataAsc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.ASC, "dataEvento"));
+	}
+	
+	public List<Evento> listarDataDesc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.DESC, "dataEvento"));
+	}
+	
+	public List<Evento> listarValAsc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.ASC, "valor"));
+	}
+	
+	public List<Evento> listarValDesc(){
+		System.out.println("Listei em ordem Asc");
+		return eventoRe.findAll(Sort.by(Sort.Direction.DESC, "valor"));
 	}
 	
 	public Evento salvar(Evento casas) {
 		casas.setCodigo(null);
-		return casaRe.save(casas);
-		
+		return eventoRe.save(casas);
 	}
 	
 	public Evento buscar(Long codigo, RedirectAttributes attributes) {
-		Evento casas = casaRe.findById(codigo).get();
+		Evento casas = eventoRe.findById(codigo).get();
 		
 		if(casas == null) {
 			attributes.addFlashAttribute("mensagem", "Evento nao encontrado");
@@ -36,12 +77,12 @@ public class EventoService {
 	}
 	
 	public void deletar(Long codigo) {
-		casaRe.deleteById(codigo);
+		eventoRe.deleteById(codigo);
 	}
 	
 	public void atualizar(Evento casas) {
 		buscar(casas.getCodigo(), null);
-		casaRe.save(casas);
+		eventoRe.save(casas);
 		
 	}
 }

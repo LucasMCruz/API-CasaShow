@@ -69,6 +69,7 @@ public class CasaShowService {
 		buscar(casas.getCodigo(), null);
 		casaRe.save(casas);
 		
+		
 	}
 	public void deletar(Long codigo) {
 		casaRe.deleteById(codigo);

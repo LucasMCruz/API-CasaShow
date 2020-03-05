@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,13 @@ public class ApiHistorico {
 	public ResponseEntity<List<Historico>> listar(){
 		System.out.println("Listando Historico de Compra");
 		return ResponseEntity.status(HttpStatus.OK).body(histSe.listar());
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Historico> buscar(@PathVariable("id") Long id) {
+		Historico hist = histSe.buscar(id);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(hist);
 	}
 
 }

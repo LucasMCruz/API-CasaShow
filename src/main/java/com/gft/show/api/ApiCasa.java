@@ -44,7 +44,7 @@ public class ApiCasa {
 	
 	}
 	
-	@GetMapping("/asc")
+	@GetMapping("/nome/asc")
 	public ResponseEntity<List<CasaShow>> listaASC(){
 		System.out.println("Listando casas em ordem ASC");
 		List<CasaShow> casas = casaSe.listarAsc();
@@ -53,7 +53,7 @@ public class ApiCasa {
 	}
 	
 	
-	@GetMapping("/desc")
+	@GetMapping("/nome/desc")
 	public ResponseEntity<List<CasaShow>> listaDESC(){
 		System.out.println("Listando casas em ordem ASC");
 		List<CasaShow> casas = casaSe.listarDesc();

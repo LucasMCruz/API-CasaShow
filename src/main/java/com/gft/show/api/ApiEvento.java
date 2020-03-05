@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.gft.show.model.CasaShow;
 import com.gft.show.model.Evento;
 import com.gft.show.service.EventoService;
 
@@ -39,6 +40,78 @@ public class ApiEvento {
 		System.out.println("Listando eventos");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(eventoSe.listar());
+		
+	}
+	
+	
+	@GetMapping("/valor/asc")
+	public ResponseEntity<List<Evento>> listaValorASC(){
+		System.out.println("Listando evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarValAsc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/valor/desc")
+	public ResponseEntity<List<Evento>> listaValorDESC(){
+		System.out.println("Listando Evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarValDesc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/data/asc")
+	public ResponseEntity<List<Evento>> listaDataASC(){
+		System.out.println("Listando evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarDataAsc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/data/desc")
+	public ResponseEntity<List<Evento>> listaDataDESC(){
+		System.out.println("Listando Evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarDataDesc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/capacidade/asc")
+	public ResponseEntity<List<Evento>> listaCapASC(){
+		System.out.println("Listando evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarCapAsc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/capacidade/desc")
+	public ResponseEntity<List<Evento>> listaCapDESC(){
+		System.out.println("Listando Evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarCapDesc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/nome/asc")
+	public ResponseEntity<List<Evento>> listaASC(){
+		System.out.println("Listando evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarAsc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
+		
+	}
+	
+	
+	@GetMapping("/nome/desc")
+	public ResponseEntity<List<Evento>> listaDESC(){
+		System.out.println("Listando Evento em ordem ASC");
+		List<Evento> casas = eventoSe.listarDesc();
+		return ResponseEntity.status(HttpStatus.OK).body(casas);
 		
 	}
 	

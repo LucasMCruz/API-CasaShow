@@ -1,5 +1,6 @@
 package com.gft.show.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +59,8 @@ public class HomeController {
 			mv.addObject(Eventos.getQtdingresso());
 			events.save(Eventos);
 			System.out.println("Vou descontar");
-			Historico hist = new Historico(Eventos.getCodigo(),Eventos.getNomeEvento(), desc, Eventos.getValor());
+			Historico hist = new Historico(Eventos.getCodigo(),Eventos.getNomeEvento(), desc, 
+					(BigDecimal.valueOf(desc).multiply(Eventos.getValor())));
 			histRe.save(hist);
 			
 			}
