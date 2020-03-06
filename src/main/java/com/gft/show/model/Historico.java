@@ -23,7 +23,6 @@ public class Historico {
 	private BigDecimal preco;
 	
 	public Historico(Long IDevento, String evento, int ingresso, BigDecimal valor) {
-		super();
 		IDevento = IDevento;
 		this.evento = evento;
 		this.ingresso = ingresso;
