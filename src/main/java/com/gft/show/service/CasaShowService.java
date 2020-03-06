@@ -55,8 +55,8 @@ public class CasaShowService {
 		return casa;
 	}
 	
-	public CasaShow buscarPorNome(String nome) {
-		CasaShow casa = casaRe.findByNome(nome);
+	public List<CasaShow> buscarPorNome(String nome) {
+		List<CasaShow> casa = casaRe.findByNome(nome);
 		
 		if(casa == null) {
 			throw new CasaNao("Casa Na0 existe");

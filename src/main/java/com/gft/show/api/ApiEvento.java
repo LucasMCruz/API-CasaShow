@@ -36,7 +36,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos")
 	@GetMapping()
-	public ResponseEntity<List<Evento>>listar(@ApiParam(name="Lista pelo id")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>>listar(){
 		System.out.println("Listando eventos");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(eventoSe.listar());
@@ -45,7 +45,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/valor/asc")
-	public ResponseEntity<List<Evento>> listaValorASC(@ApiParam(name="Lista pelo valor")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaValorASC(){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarValAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -54,7 +54,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/valor/desc")
-	public ResponseEntity<List<Evento>> listaValorDESC(@ApiParam(name="Lista pelo valor")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaValorDESC(){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarValDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -63,7 +63,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/data/asc")
-	public ResponseEntity<List<Evento>> listaDataASC(@ApiParam(name="Lista pela Data")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaDataASC(){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDataAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -72,7 +72,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/data/desc")
-	public ResponseEntity<List<Evento>> listaDataDESC(@ApiParam(name="Lista pela Data")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaDataDESC(){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDataDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -81,7 +81,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/capacidade/asc")
-	public ResponseEntity<List<Evento>> listaCapASC(@ApiParam(name="Lista pela Capaci9dade")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaCapASC(){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarCapAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -90,7 +90,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/capacidade/desc")
-	public ResponseEntity<List<Evento>> listaCapDESC(@ApiParam(name="Lista pela CApacidade")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaCapDESC(){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarCapDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -99,7 +99,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Asc")
 	@GetMapping("/nome/asc")
-	public ResponseEntity<List<Evento>> listaASC(@ApiParam(name="Lista pelo nome")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaASC(){
 		System.out.println("Listando evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarAsc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);
@@ -108,7 +108,7 @@ public class ApiEvento {
 	
 	@ApiOperation("Listar todos os Eventos em Desc")
 	@GetMapping("/nome/desc")
-	public ResponseEntity<List<Evento>> listaDESC(@ApiParam(name="Lista pelo nome")@RequestBody  Evento evento){
+	public ResponseEntity<List<Evento>> listaDESC(){
 		System.out.println("Listando Evento em ordem ASC");
 		List<Evento> casas = eventoSe.listarDesc();
 		return ResponseEntity.status(HttpStatus.OK).body(casas);

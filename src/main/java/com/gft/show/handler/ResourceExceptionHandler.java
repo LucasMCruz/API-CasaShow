@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -94,5 +95,15 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(erro);
 	}
 	
+	@ExceptionHandler(IncorrectResultSizeDataAccessException.class)
+	public ResponseEntity<DetalheErro> handleiIncorrectResultSizeDataAccessException(IncorrectResultSizeDataAccessException e, HttpServletRequest request){
+		
+		DetalheErro erro = new DetalheErro();
+		erro.setStatus(400l);
+		erro.setTitulo("Impossivel achar, talvez tenha dois nomes iguais");
+		erro.setMensagemDesenvolvedor("Leia a Documentação");
+		erro.setTimestamp(System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
+	}
 	
 }

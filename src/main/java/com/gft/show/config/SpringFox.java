@@ -29,7 +29,9 @@ public class SpringFox implements WebMvcConfigurer{
 					.build()
 				.apiInfo(apiInfo())
 				.tags(new Tag("Casa de Show", "Gerenciamento de Casa de Shows"))
-				.tags(new Tag("Evento", "Gerenciamento de Eventos"));
+				.tags(new Tag("Evento", "Gerenciamento de Eventos"))
+				.tags(new Tag("Historico de compra", "Listar historico de compra"))
+				.tags(new Tag("Usuario", "Listar usuarios"));
 	}
 	
 	public ApiInfo apiInfo() {
