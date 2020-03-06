@@ -35,6 +35,7 @@ public class ApiCasa {
 	@Autowired
 	private CasaShowService casaSe;
 	
+	@ApiOperation("Listar todas as Casas de Show")
 	@GetMapping()
 	public ResponseEntity<List<CasaShow>> listar(){
 		System.out.println("Listando casas de show");
@@ -44,6 +45,7 @@ public class ApiCasa {
 	
 	}
 	
+	@ApiOperation("Listar Casa de Show por nome em ordem DESC")
 	@GetMapping("/nome/asc")
 	public ResponseEntity<List<CasaShow>> listaASC(){
 		System.out.println("Listando casas em ordem ASC");
@@ -52,7 +54,7 @@ public class ApiCasa {
 		
 	}
 	
-	
+	@ApiOperation("Listar Casa de Show por nome em ordem DESC")
 	@GetMapping("/nome/desc")
 	public ResponseEntity<List<CasaShow>> listaDESC(){
 		System.out.println("Listando casas em ordem ASC");
@@ -61,7 +63,7 @@ public class ApiCasa {
 		
 	}
 	
-	
+	@ApiOperation("Salvar Casa de Show")
 	@PostMapping()
 	public ResponseEntity<Void> salvar(@Valid@RequestBody CasaShow casa) {
 		System.out.println("Salvei");
@@ -72,6 +74,7 @@ public class ApiCasa {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation("Buscar uma Casa de Show")
 	@GetMapping("/{codigo}")
 	public ResponseEntity<CasaShow> buscar(@PathVariable("codigo") Long codigo) {
 		CasaShow casa = casaSe.buscar(codigo, null);
@@ -89,12 +92,16 @@ public class ApiCasa {
 		return ResponseEntity.status(HttpStatus.OK).body(casa);
 	}
 	
+	
+	@ApiOperation("Deletar Casa de Show")
 	@DeleteMapping("/{codigo}")
 	public ResponseEntity<Void> deletar(@PathVariable("codigo")Long codigo){
 		casaSe.deletar(codigo);
 		return ResponseEntity.noContent().build();
 	}
 	
+	
+	@ApiOperation("Atualizar dados de uma casa de show")
 	@PutMapping("/{codigo}")
 	public ResponseEntity<Void> altualizar(@Valid @RequestBody CasaShow casa, @PathVariable("codigo") Long codigo) {
 		casa.setCodigo(codigo);

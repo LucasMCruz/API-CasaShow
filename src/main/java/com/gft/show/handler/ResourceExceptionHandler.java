@@ -25,7 +25,7 @@ public class ResourceExceptionHandler {
 		
 		DetalheErro erro = new DetalheErro();
 		erro.setStatus(404l);
-		erro.setTitulo("Casa de show nao existe");
+		erro.setTitulo("Casa ja existe");
 		erro.setMensagemDesenvolvedor("Leia a Documentação");
 		erro.setTimestamp(System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
