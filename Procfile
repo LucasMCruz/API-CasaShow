@@ -1,1 +1,1 @@
-web: java -Dserve.port=$PORT -Dspring.profiles.active=application-prod.properties $JAVA_OPTS -jar target/*.jar
+web: java -Dserve.port=$PORT -Dspring.profiles.active=application-prod.properties $JAVA_OPTS -jar target/CasadeShow*.jar
