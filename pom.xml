@@ -9,9 +9,10 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.gft</groupId>
+	<groupId>com.example</groupId>
 	<artifactId>Casadeshow</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Casadeshow</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -95,6 +96,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+       	    <plugin>
+	         	 <groupId>org.apache.maven.plugins</groupId>
+	          	<artifactId>maven-surefire-plugin</artifactId>
+	          	<version>2.19.1</version>
+        	</plugin>
 		</plugins>
 	</build>
 
