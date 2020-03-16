@@ -24,57 +24,55 @@ import com.gft.show.repository.HistoricoRepository;
 public class HomeController {
 	@Autowired
 	private EventoRepository events;
-	
-	
+
 	@Autowired
 	private CasaShowRepository cshow;
-	
+
 	@Autowired
 	private HistoricoRepository histRe;
 
-	 
-	@RequestMapping(value="/")
+	@RequestMapping(value = "/")
 	public ModelAndView casas(Authentication authenti) {
 		ModelAndView mv = new ModelAndView("Home");
 		List<Evento> todosEventos = events.findAll();
 		mv.addObject("events", todosEventos);
 		List<CasaShow> todasCasas = cshow.findAll();
 		mv.addObject("cshow", todasCasas);
-		
+
 		return mv;
 	}
-	
-	@RequestMapping(value="/comprar/{codigo}", method = RequestMethod.POST)
-	public ModelAndView comprar(@PathVariable Long codigo, RedirectAttributes attributess, int desc) {
-			System.out.println(codigo);	
-			ModelAndView mv = new ModelAndView("redirect:/");
-		
-			
-			Evento Eventos = events.findById(codigo).get();
-			
-			if (Eventos.getQtdingresso() > 0 && Eventos.getQtdingresso()-desc >= 0) {
-			
 
-					Eventos.setQtdingresso(Eventos.getQtdingresso() - desc);
+	@RequestMapping(value = "/comprar/{codigo}", method = RequestMethod.POST)
+	public ModelAndView comprar(@PathVariable Long codigo, RedirectAttributes attributess, int desc) {
+		System.out.println(desc + "aa");
+		ModelAndView mv = new ModelAndView("redirect:/");
+
+		Evento Eventos = events.findById(codigo).get();
+
+		if (Eventos.getQtdingresso() > 0 && Eventos.getQtdingresso() - desc >= 0) {
+
+			Eventos.setQtdingresso(Eventos.getQtdingresso() - desc);
 			mv.addObject(Eventos.getQtdingresso());
 			events.save(Eventos);
 			System.out.println("Vou descontar");
-			Historico hist = new Historico(Eventos.getCodigo(),Eventos.getNomeEvento(), desc, 
+			Historico hist = new Historico(Eventos.getCodigo(), Eventos.getNomeEvento(), desc,
 					(BigDecimal.valueOf(desc).multiply(Eventos.getValor())));
+
 			histRe.save(hist);
-			
-			}
-			else {
-				attributess.addFlashAttribute("mensagem", "A quantidade que voce solicitou nao esta disponivel");
-			}
-			mv.addObject("events", Eventos);
-			events.save(Eventos);
-			System.out.println(Eventos.getNomeEvento());
+
+		} else {
+			attributess.addFlashAttribute("fail", "A quantidade que voce solicitou nao esta disponivel");
 			return mv;
-		
+		}
+		attributess.addFlashAttribute("mensagem", "Comprado com sucesso");
+		mv.addObject("events", Eventos);
+		events.save(Eventos);
+		System.out.println(Eventos.getNomeEvento());
+		return mv;
+
 	}
 
-	@RequestMapping(value="/comprar/{codigo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/comprar/{codigo}", method = RequestMethod.GET)
 	public ModelAndView venda(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("TelaVenda");
 		mv.addObject(new Evento());

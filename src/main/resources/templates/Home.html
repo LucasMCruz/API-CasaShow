@@ -19,15 +19,15 @@
 
 	<div class="container-fluid" th:object="${evento}">
 		<div class="alert alert-success mr-3 ml-3" role="alert"
-				th:if="${#strings.isEmpty(mensagem)}">
-				<span>Compra realizada com sucesso</span>
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}"></span>
 			</div>
 					<div class="alert alert-danger mr-3 ml-3" role="alert"
-				th:if="${!#strings.isEmpty(mensagem)}">
-				<span th:text="${mensagem}">Compra realizada com sucesso</span>
+				th:if="${!#strings.isEmpty(fail)}">
+				<span th:text="${fail}"></span>
 			</div>
 		<div class="logo text-center card-header text-white">
-			<h2>Bem-vindo <span sec:authentication="principal.username"></span></h2>
+			<h2>Bem-vindo</h2>
 		</div>
 			<div class="card m-5 pt-2 pb-2 pl-2 pr-2 "   th:each="events: ${events}">
 			
