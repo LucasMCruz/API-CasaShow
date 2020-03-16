@@ -12,6 +12,8 @@
 				<div class="card-header text-center">
 					Cadastrar
 				</div>
+				<div th:if="${param.error}" class="alert alert-danger mr-3 ml-3">
+				<span>usuario ja existe</span></div>
 				<div class="alert alert-success mr-3 mt-1 ml-3" role="alert"
 					th:if="${!#strings.isEmpty(mensagem)}">
 					<span th:text="${mensagem}">Casa de show cadastrada</span>
@@ -19,9 +21,14 @@
 			<form action="/registrar" method="POST" >
 				<div class="card-body">
 				<input type="hidden" name="id"/>
-					<div class="from-group row was-valid" >
+					<div class="from-group row " data-validate="Enter username or email">
 						<h5 class="card-title col-sm-3">Usuario:</h5>
 						<input type="text" class="form-control col-sm-4 mb-2" name="username" required>
+					</div>
+					
+					<div class="from-group row " data-validate="Nome Completo">
+						<h5 class="card-title col-sm-3">Nome:</h5>
+						<input type="text" class="form-control col-sm-4 mb-2" name="nome" required>
 					</div>
 	
 					<div class="form group row was-valid">

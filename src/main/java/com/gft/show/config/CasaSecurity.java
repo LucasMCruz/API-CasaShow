@@ -59,7 +59,7 @@ public class CasaSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("/casas").hasAuthority("ADMIN")
 				//.antMatchers("/{codigo}").hasAnyRole("USER2")
 				.antMatchers("/eventos").hasAuthority("ADMIN")
-				.antMatchers("/").hasAnyAuthority("USER","ADMIN")
+				.antMatchers("/").permitAll()
 				.antMatchers("/entrar").permitAll()
 				.antMatchers("/api/**").permitAll()//hasAnyAuthority("USER","ADMIN")
 				.antMatchers("/swagger-ui.html").hasAnyAuthority("USER","ADMIN")

@@ -32,9 +32,9 @@ public class ApiUsuario {
 		return ResponseEntity.status(HttpStatus.OK).body(usuaSe.listar());
 	}
 	@ApiOperation("Listar usuarios")
-	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> Buscar(@PathVariable("id") Long id){
-		return ResponseEntity.status(HttpStatus.OK).body(usuaSe.buscar(id));
+	@GetMapping("/{username}")
+	public ResponseEntity<Usuario> Buscar(@PathVariable("username") String username){
+		return ResponseEntity.status(HttpStatus.OK).body(usuaSe.buscar(username));
 	}
 
 	

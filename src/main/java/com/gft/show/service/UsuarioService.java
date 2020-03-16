@@ -19,8 +19,8 @@ public class UsuarioService {
 		return usuaRe.findAll();
 	}
 	
-	public Usuario buscar(Long id) {
-		Usuario usu = usuaRe.findById(id).get();
+	public Usuario buscar(String username) {
+		Usuario usu = usuaRe.findById(username).get();
 		
 		if(usu == null) {
 			throw new UsuarioNao("Usuario nao encontrado");
